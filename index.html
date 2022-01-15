@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="assets/trowel.png" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <!-- feathericons CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <title>Zé Maria - Orçamentos</title>
+</head>
+<body>
+  <header>
+    <img src="assets/trowel.png" alt="Colher de Pedreiro">
+    <h1>Zé<br>Maria</h1>
+  </header>
+
+  <main class="container">
+    <section id="container-title">
+      <h2>Orçamento</h2>
+
+        <div class="buttons">
+        <a href="#" class="button-print" onclick="Print.init()">
+          <i data-feather="printer"></i>
+        </a>
+        <a href="#" class="button-delete" onclick="Services.removeAll()">
+          <i data-feather="trash-2"></i>
+        </a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>Cliente</h3>
+
+      <div class="form-client">
+        <!-- Just for print -->
+        <form action="">
+          <div class="input-group">
+            <input
+              type="text"
+              id="client-name"
+              name="client-name"
+              placeholder="Insira o Nome do Cliente"
+            />
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="card add-service">
+      <a href="#" class="button-add" onclick="Modal.open()">
+        + Adicionar Serviço
+      </a>
+    </section>
+
+    <section class="card">
+      <h3>Resumo</h3>
+      <table id="data-table">
+        <thead>
+          <tr>
+            <th>Serviço/Material</th>
+            <th>Qtd.</th>
+            <th>Valor Unitário</th>
+            <th>Subtotal</th>
+            <th class="head-remove"></th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+
+    </section>
+
+    <section class="card total">
+      <p id="description">Total:</p>
+      <p id="total"></p>
+    </section>
+  </main>
+
+  <section class="modal-overlay">
+    <div class="modal">
+      <h3>Adicionar serviço</h3>
+
+      <form action="" onsubmit="Form.submit(event)">
+        <fieldset id="services">
+          <select name="services-form" class="services-form" required>
+            <option selected disabled value="">Selecione</option>
+            <optgroup label="Serviços">
+              <option value="Calçada">
+                Calçada
+              </option>
+              <option value="Chapisco">
+                Chapisco
+              </option>
+              <option value="Cobertura">
+                Cobertura
+              </option>
+              <option value="Contrapiso">
+                Contrapiso
+              </option>
+              <option value="Muro (arrimo)">
+                Muro (arrimo)
+              </option>
+              <option value="Muro (simples)">
+                Muro (simples)
+              </option>
+              <option value="Muro (tijolo deitado)">
+                Muro (tijolo deitado)
+              </option>
+              <option value="Parede">
+                Parede
+              </option>
+              <option value="Pintura">
+                Pintura
+              </option>
+              <option value="Piso">
+                Piso
+              </option>
+              <option value="Reboco">
+                Reboco
+              </option>
+            </optgroup>
+            <optgroup label = "Materiais" >
+              <option value="Areia">
+                Areia
+              </option>
+              <option value="Argamassa (AC1)">
+                Argamassa (AC1)
+              </option>
+              <option value="Argamassa (AC2)">
+                Argamassa (AC2)
+              </option>
+              <option value="Argamassa (AC3)">
+                Argamassa (AC3)
+              </option>
+              <option value="Batente">
+                Batente
+              </option>
+              <option value="Caibro">
+                Caibro
+              </option>
+              <option value="Caixa">
+                Caixa
+              </option>
+              <option value="Caixa Sifonada">
+                Caixa Sifonada
+              </option>
+              <option value="Caixa de Descarga">
+                Caixa de Descarga
+              </option>
+              <option value="Cal Virgem">
+                Cal Virgem
+              </option>
+              <option value="Cano (esgoto)">
+                Cano (esgoto)
+              </option>
+              <option value="Cano (hidráulico)">
+                Cano (hidráulico)
+              </option>
+              <option value="Cap">
+                Cap
+              </option>
+              <option value="Capas de Barro">
+                Capas de Barro
+              </option>
+              <option value="Cimento">
+                Cimento
+              </option>
+              <option value="Coluna">
+                Coluna
+              </option>
+              <option value="Cotovelo">
+                Cotovelo
+              </option>
+              <option value="Cruzeta">
+                Cruzeta
+              </option>
+              <option value="Cunha">
+                Cunha
+              </option>
+              <option value="Eternit">
+                Eternit
+              </option>
+              <option value="Fechadura">
+                Fechadura
+              </option>
+              <option value="Fio Elétrico">
+                Fio Elétrico
+              </option>
+              <option value="Flexível">
+                Flexível
+              </option>
+              <option value="Forro">
+                Forro
+              </option>
+              <option value="Interruptor">
+                Interruptor
+              </option>
+              <option value="Janela">
+                Janela
+              </option>
+              <option value="Lavatório">
+                Lavatório
+              </option>
+              <option value="Lixa">
+                Lixa
+              </option>
+              <option value="Luva">
+                Luva
+              </option>
+              <option value="Massa Corrida">
+                Massa Corrida
+              </option>
+              <option value="Meia-cana">
+                Meia-cana
+              </option>
+              <option value="Nivelador">
+                Nivelador
+              </option>
+              <option value="Paflon">
+                Paflon
+              </option>
+              <option value="Parafuso (eternit)">
+                Parafuso (eternit)
+              </option>
+              <option value="Parafuso (forro)">
+                Parafuso (forro)
+              </option>
+              <option value="Pedra">
+                Pedra
+              </option>
+              <option value="Piso (retificado)">
+                Piso (retificado)
+              </option>
+              <option value="Porcelanato">
+                Porcelanato
+              </option>
+              <option value="Porta">
+                Porta
+              </option>
+              <option value="Prego (17/27)">
+                Prego (17/27)
+              </option>
+              <option value="Prego (22/42)">
+                Prego (22/42)
+              </option>
+              <option value="Prego (24/48)">
+                Prego (24/48)
+              </option>
+              <option value="Ralo">
+                Ralo
+              </option>
+              <option value="Registro">
+                Registro
+              </option>
+              <option value="Rejunte">
+                Rejunte
+              </option>
+              <option value="Sifão">
+                Sifão
+              </option>
+              <option value="Telha de Barro">
+                Telha de Barro
+              </option>
+              <option value="Tijolo">
+                Tijolo
+              </option>
+              <option value="Tinta">
+                Tinta
+              </option>
+              <option value="Tomada">
+                Tomada
+              </option>
+              <option value="Torneira">
+                Torneira
+              </option>
+              <option value="Treliça">
+                Treliça
+              </option>
+              <option value="Tábua (20 Cm)">
+                Tábua (20 Cm)
+              </option>
+              <option value="Tábua (25 Cm)">
+                Tábua (25 Cm)
+              </option>
+              <option value="Tábua (30 Cm)">
+                Tábua (30 Cm)
+              </option>
+              <option value="Tábua (beiral)">
+                Tábua (beiral)
+              </option>
+              <option value="Vaso Sanitário">
+                Vaso Sanitário
+              </option>
+              <option value="Veda Rosca">
+                Veda Rosca
+              </option>
+              <option value="Viga">
+                Viga
+              </option>
+              <option value="Vista">
+                Vista
+              </option>
+            </optgroup>
+          </select>
+
+          <label for="quantidade" >
+            <input type="number" name="quantidade" id="quantity-form" min="0.01" max="999" step="0.01" class="services-form" placeholder="Quantidade" required>
+          </label>
+
+          <select name="unidade" id="unity-form" class="services-form">
+            <option selected value="">
+              Unidade
+            </option>
+            <option value="barrica">
+              Barrica
+            </option>
+            <option value="lata">
+              Lata
+            </option>
+            <option value="m">
+              m
+            </option>
+            <option value="m&sup2">
+              m&sup2
+            </option>
+            <option value="m&sup3">
+              m&sup3
+            </option>
+            <option value="pacote">
+              pacote
+            </option>
+            <option value="saco">
+              Saco
+            </option>
+            <option value="kg">
+              kg
+            </option>
+            <option value="milheiro">
+              Milheiro
+            </option>
+          </select>
+
+          <input type="number" id="price-form" class="services-form" step="0.01" min="0" max="1000" placeholder="Preço">
+        </fieldset>
+
+        <div id="form-buttons">
+          <button class="button-add-service">Adicionar</button>
+          <a href="#" class="button-cancel" onclick="Modal.close()">Cancelar</a>
+      </form>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>JM Construção</p>
+    <div id="flaticon-credit">Trowel icon made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+  </footer>
+
+  <script src="script.js"></script>
+  
+  <script>
+    feather.replace({'stroke': 'black'})
+  </script>
+
+</body>
+</html>
